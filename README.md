@@ -2,7 +2,7 @@
 
 ![labels example](figures/github_figure.png)
 
-{abstract}
+We present MICRON, a segmentation-free, fully automated multiple-instance-learning based tool for automatic identification of outcome-linked immune microenvironments. MICRON learns representations of samples profiled with spatial imaging proteomics modalities, enabling more accurate prognostic and diagnostic prediction over existing approaches, while generating a comprehensive importance map of outcome-associated image regions.
 
 The methods implemented in this study are based on those described in the following publication:
 
@@ -15,6 +15,7 @@ Basic installation depends on python packages that can be installed using conda 
 conda install numpy scipy scikit-image scikit-learn cudatoolkit cudnn
 pip install tensorflow-gpu
 ```
+The specific version of package can see in requirements.txt file.
 
 To use the learning rate range test or cyclic learning rates, install the following repository: https://github.com/psklight/keras_one_cycle_clr. Set up the submodule using the steps below:
 ```
@@ -58,7 +59,7 @@ sample_N,val
 ## Running MICRON from the Command Line on the Diabetes Dataset
 
 ```
-python3.10 run_train.py -i diabetes/sample_tiff -o MICRON-master -f 5 -m resnet50 -r 0.05 -b 5 -e 10 -c 120 --save_results save_result --test_crop 120 --mi quantile -q 16 --out_model MICRON-master
+python3.10 run_train.py -i diabetes/sample_tiff -o MICRON -f 5 -m resnet50 -r 0.05 -b 5 -e 10 -c 120 --save_results save_result --test_crop 120 --mi quantile -q 16 --out_model MICRON
 ```
 
 After running the code, we will get a pickle file.
