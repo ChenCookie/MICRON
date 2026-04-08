@@ -217,7 +217,6 @@ if __name__ == "__main__":
         callbacks = []
         if lr_range is not None:
             # lr range test
-            print("test in here 1")
             from keras_one_cycle_clr.keras_one_cycle_clr.lr_range_test import LrRangeTest
             lrrt_cb = LrRangeTest( lr_range=(lr_range[0],lr_range[1]), wd_list=[0], steps=lr_range[2], batches_per_step=100//batch_size, validation_data=gen_val, batches_per_val=50, verbose=True, custom_objects={'categorical_crossentropy_missing':cat_loss,'categorical_accuracy_missing':cat_acc} )
             n_epochs = lrrt_cb.find_n_epoch(gen_train)
@@ -227,7 +226,6 @@ if __name__ == "__main__":
 
         if len(lr) > 1 :
             # cyclic lr
-            print("test in here 2")
             from keras_one_cycle_clr.keras_one_cycle_clr.cyclic_lr import CLR
             from keras_one_cycle_clr.keras_one_cycle_clr.utils import plot_from_history
             clr_cb = CLR( cyc=lr[2], lr_range=(lr[0],lr[1]), momentum_range=(0.95, 0.85), verbose=True, amplitude_fn=lambda x: np.power(1.0/3, x) )
@@ -247,7 +245,7 @@ if __name__ == "__main__":
         
     # predict on test data
     if save_results is not None or test_only:
-        # put all instances into list
+        # put all crop into list
         test_images = [ sample_images[samples[s]] for s in idx_test ]
         if use_mask:
             test_masks = [ sample_masks[samples[s]] for s in idx_test ]
@@ -267,7 +265,6 @@ if __name__ == "__main__":
 
             gen_test = cnn.ImageSequence( src_dir, test_images, test_labels, classes, test_crop, 1, preprocess_input, mask_list=test_masks if use_mask else None, random=False , test_crop=True, seg_pixel_num=j+1)
             p = model.predict( gen_test, steps=len(test_images), max_queue_size=5, workers=n_jobs, use_multiprocessing=True ) # .predict_generator
-
 
 
             input3_output_model = tf.keras.models.Model(
@@ -299,15 +296,15 @@ if __name__ == "__main__":
             for get_filename in range(len(test_images)):
                 if test_images[get_filename][0] not in test_img_embedding:
                     test_img_embedding.setdefault(test_images[get_filename][0], np.empty((0,train_input_data.shape[1]), float))
-                    test_img_embedding.setdefault(test_images[get_filename][0] + " probility", np.empty((0,2), float))
-                    test_img_embedding.setdefault(test_images[get_filename][0] + " coordinate", np.empty((0,2), float))
+                    # test_img_embedding.setdefault(test_images[get_filename][0] + " probability", np.empty((0,2), float))
+                    # test_img_embedding.setdefault(test_images[get_filename][0] + " coordinate", np.empty((0,2), float))
                 temp_embedding = test_img_embedding[test_images[get_filename][0]]
                 temp_embedding  = np.append(temp_embedding, [train_input_data[get_filename]], axis=0)
                 test_img_embedding[test_images[get_filename][0]] = temp_embedding
 
-                temp_p = test_img_embedding[test_images[get_filename][0] + " probility"]
-                temp_p  = np.append(temp_p, [p[get_filename]], axis=0)
-                test_img_embedding[test_images[get_filename][0] + " probility"] = temp_p
+                # temp_p = test_img_embedding[test_images[get_filename][0] + " probability"]
+                # temp_p  = np.append(temp_p, [p[get_filename]], axis=0)
+                # test_img_embedding[test_images[get_filename][0] + " probability"] = temp_p
 
         
 
