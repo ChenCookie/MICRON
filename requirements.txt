@@ -1,0 +1,14 @@
+absl-py=1.4.0=pypi_0
+h5py=3.9.0=nompi_py310h7fd3376_101
+keras=2.13.1=pypi_0
+numpy=1.23.5=pypi_0
+pandas=2.2.3=py310hcf29cfe_0
+pillow=10.0.0=py310h60ecbdf_0
+scikit-image=0.22.0=pypi_0
+scikit-learn=1.3.0=py310h02d4e2a_0
+tensorflow-estimator=2.13.0=pypi_0
+tensorflow-macos=2.13.0=pypi_0
+
+#commonly needed with tensorflow-macos env
+tensorboard=2.13.0=pypi_0
+tensorboard-data-server=0.7.1=pypi_0

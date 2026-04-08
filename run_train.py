@@ -311,8 +311,8 @@ if __name__ == "__main__":
 
         
 
-        # save the pickle file name
-        f = open('imc_brain_testimg_dict_seg70_sel30_white_cleanchannellocfixcrop2_fold' + str(fold) + '_test.pkl',"wb")
+        # save the pickle file name imc_brain_testimg_dict_seg70_sel30_white_cleanchannellocfixcrop2_fold' + str(fold) + '_
+        f = open('test.pkl',"wb")
         pickle.dump(test_img_embedding,f)
         f.close()
 

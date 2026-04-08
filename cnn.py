@@ -57,7 +57,7 @@ def load_base_model( model_name ):
     '''
 
     max_dim = None
-    max_channel = 18  #change dimension here 38 18
+    max_channel = 38  #change dimension here diabetes 38/brain tumor 18/breast cancer 52
     input_tensor = Input(shape=(max_dim,max_dim,max_channel)) # change here
     if model_name.lower() == 'resnet50':
         from tensorflow.keras.applications.resnet50 import ResNet50
@@ -282,15 +282,15 @@ class ImageSequence(Sequence):
 
                 # read image file and get max crop size for superpixel cropping
                 #diabetes                
-                # img = io.imread(self.image_dir + 'ims/' + img_fn ) 
-                # img = np.arcsinh(1. / 5 * img)
+                img = io.imread(self.image_dir + 'ims/' + img_fn ) 
+                img = np.arcsinh(1. / 5 * img)
 
                 
                 # brain
-                img = io.imread(self.image_dir + img_fn ) 
-                img = np.transpose(img, (2, 1, 0))
-                img = np.arcsinh(1. / 5 * img)
-                img = img[:,:,[i for i in range(17)] + [18]]
+                # img = io.imread(self.image_dir + img_fn ) 
+                # img = np.transpose(img, (2, 1, 0))
+                # img = np.arcsinh(1. / 5 * img)
+                # img = img[:,:,[i for i in range(17)] + [18]]
 
                 # breast cancer
                 # img = io.imread(self.image_dir + img_fn ) 
@@ -365,7 +365,7 @@ class ImageSequence(Sequence):
                 if self.test_crop: 
                     start_crop_times = self.seg_pixel_num if self.seg_pixel_num <= np.max(segments) else np.max(segments)
                     random_crop_times = start_crop_times + 1 # fix code here for define mask for priticular superpixel mask
-                    print("check here select pixel:", start_crop_times)
+                    # print("check here select crop:", start_crop_times)
                 else: 
                     start_crop_times = 1
                     random_crop_times = np.max(segments)+1
