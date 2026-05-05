@@ -57,7 +57,7 @@ def load_base_model( model_name ):
     '''
 
     max_dim = None
-    max_channel = 38  #change dimension here diabetes 38/brain tumor 18/breast cancer 52
+    max_channel = 18  #change dimension here diabetes 38/brain tumor 18/breast cancer 52
     input_tensor = Input(shape=(max_dim,max_dim,max_channel)) # change here
     if model_name.lower() == 'resnet50':
         from tensorflow.keras.applications.resnet50 import ResNet50
@@ -282,15 +282,15 @@ class ImageSequence(Sequence):
 
                 # read image file and get max crop size for superpixel cropping
                 #diabetes                
-                img = io.imread(self.image_dir + 'ims/' + img_fn ) 
-                img = np.arcsinh(1. / 5 * img)
+                # img = io.imread(self.image_dir + 'ims/' + img_fn ) 
+                # img = np.arcsinh(1. / 5 * img)
 
                 
                 # brain
-                # img = io.imread(self.image_dir + img_fn ) 
-                # img = np.transpose(img, (2, 1, 0))
-                # img = np.arcsinh(1. / 5 * img)
-                # img = img[:,:,[i for i in range(17)] + [18]]
+                img = io.imread(self.image_dir + img_fn ) 
+                img = np.transpose(img, (2, 1, 0))
+                img = np.arcsinh(1. / 5 * img)
+                img = img[:,:,[i for i in range(17)] + [18]]
 
                 # breast cancer
                 # img = io.imread(self.image_dir + img_fn ) 
