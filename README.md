@@ -56,7 +56,7 @@ sample_3,test
 sample_N,val
 ```
 
-## Running MICRON from the Command Line on the Diabetes Dataset
+## Running MICRON from the Command Line on the Brain Tumors Dataset
 
 ```
 python3.10 run_train.py -i /IMC_brain/sample_tiff -o MICRON -f 8 -m resnet50 -r 0.05 -b 5 -e 10 -c 120 --save_results save_result --test_crop 120 --mi quantile -q 16 --out_model MICRON
