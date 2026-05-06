@@ -63,7 +63,7 @@ python3.10 run_train.py -i /IMC_brain/sample_tiff -o MICRON -f 8 -m resnet50 -r 
 
 ```
 
-After running the code, we will get a pickle file.
+After running the code, we will get a pickle file. You can see the format of pickle file "imc_brain_testimg_dict_seg100_sel30cleanchannellocfixcrop2_fold8.pkl" in Zenodo. The further step of the downstream task in [here](https://github.com/ChenCookie/MICRON/blob/main/brain_tumor_pipline.ipynb) for brain tumors dataset.
 
 
 ## Citation
